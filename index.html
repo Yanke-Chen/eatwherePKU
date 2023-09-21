@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机抽取选项</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>随机抽取选项</h1>
+    <div id="options">
+        <label for="range">选择抽取的范围:</label>
+        <select id="range">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <!-- 添加其他选项 -->
+        </select>
+        <br>
+        <label for="mode">选择抽取的模式:</label>
+        <select id="mode">
+            <option value="mode1">模式一: 随机抽取子选项</option>
+            <option value="mode2">模式二: 随机抽取大选项，然后抽取子选项</option>
+        </select>
+        <br>
+        <button onclick="randomize()">抽取</button>
+    </div>
+    <div id="result"></div>
+    <script src="script.js"></script>
+</body>
+</html>
