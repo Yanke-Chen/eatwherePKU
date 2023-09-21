@@ -1,36 +1,67 @@
+var selectedRanges = [];
+var selectedMode = "";
+
 function randomize() {
-    var range = document.getElementById("range").value;
-    var mode = document.getElementById("mode").value;
+    var rangeCheckboxes = document.querySelectorAll("#rangeSelection input[type='checkbox']:checked");
+    var modeSelect = document.getElementById("mode");
 
-    var options = [];
+    if (rangeCheckboxes.length > 0) {
+        selectedRanges = [];
+        for (var i = 0; i < rangeCheckboxes.length; i++) {
+            selectedRanges.push(rangeCheckboxes[i].value);
+        }
+        selectedMode = modeSelect.value;
 
-    // 根据选择的范围，填充选项数组
-    if (range === "A") {
-        options = ["A1", "A2", "A3"];
-    } else if (range === "B") {
-        options = ["B1", "B2", "B3"];
-    } else if (range === "C") {
-        options = ["C1", "C2", "C3"];
-    }
-    // 添加其他选项的处理
+        var options = [];
 
-    var result = document.getElementById("result");
+        // 根据用户选择的大选项范围，填充选项数组
+        for (var i = 0; i < selectedRanges.length; i++) {
+            var range = selectedRanges[i];
+            if (range === "家园") {
+                options = options.concat(["家园F1", "家园F2", "家园F3"]);
+            } else if (range === "勺园") {
+                options = options.concat(["勺园"]);
+            } else if (range === "农园") {
+                options = options.concat(["农园F1", "农园F2"]);
+            } else if (range === "学一") {
+                options = options.concat(["学一"]);
+            } else if (range === "学五") {
+                options = options.concat(["学五F1","学五F2"]);
+            }
+            // 添加其他大选项范围的处理
+        }
 
-    if (mode === "mode1") {
-        var randomIndex = Math.floor(Math.random() * options.length);
-        var selectedOption = options[randomIndex];
-        result.textContent = "随机选中的选项是：" + selectedOption;
-    } else if (mode === "mode2") {
-        var randomIndex = Math.floor(Math.random() * options.length);
-        var selectedBigOption = options[randomIndex];
+        var result = document.getElementById("result");
 
-        // 根据选择的大选项，获取对应的子选项数组
-        var subOptions = [];
+        if (selectedMode === "mode1") {
+            var randomIndex = Math.floor(Math.random() * options.length);
+            var selectedOption = options[randomIndex];
+            result.textContent = "随机选中的吃饭地点是：" + selectedOption;
+        } else if (selectedMode === "mode2") {
+            var randomIndex = Math.floor(Math.random() * selectedRanges.length);
+            var selectedBigOption = selectedRanges[randomIndex];
 
-        // 在这里添加相应的子选项数组
+            // 根据选择的大选项，获取对应的子选项数组
+            var subOptions = [];
 
-        var randomSubIndex = Math.floor(Math.random() * subOptions.length);
-        var selectedSubOption = subOptions[randomSubIndex];
-        result.textContent = "随机选中的大选项是：" + selectedBigOption + "，随机选中的子选项是：" + selectedSubOption;
+            if (selectedBigOption === "家园") {
+                subOptions = ["家园F1", "家园F2", "家园F3"];
+            } else if (selectedBigOption === "勺园") {
+                subOptions = ["勺园"];
+            } else if (selectedBigOption === "农园") {
+                subOptions = ["农园F1", "农园F2"];
+            } else if (selectedBigOption === "学一") {
+                subOptions = ["学一"];
+            } else if (selectedBigOption === "学五") {
+                subOptions = ["学五F1","学五F2"];
+            }
+            // 添加其他大选项范围的子选项处理
+
+            var randomSubIndex = Math.floor(Math.random() * subOptions.length);
+            var selectedSubOption = subOptions[randomSubIndex];
+            result.textContent = "随机选中的食堂是：" + selectedBigOption + "，随机选中的楼层是：" + selectedSubOption;
+        }
+    } else {
+        alert("请选择至少一个食堂。");
     }
 }

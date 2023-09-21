@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机抽取选项</title>
+    <title>今天去哪儿吃</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>随机抽取选项</h1>
-    <div id="options">
-        <label for="range">选择抽取的范围:</label>
-        <select id="range">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <!-- 添加其他选项 -->
-        </select>
-        <br>
-        <label for="mode">选择抽取的模式:</label>
-        <select id="mode">
-            <option value="mode1">模式一: 随机抽取子选项</option>
-            <option value="mode2">模式二: 随机抽取大选项，然后抽取子选项</option>
-        </select>
-        <br>
-        <button onclick="randomize()">抽取</button>
+    <h1>去哪儿吃Ver1.0</h1>
+    <div id="rangeSelection">
+        <label>选择想要去的地点范围:</label><br>
+        <input type="checkbox" id="家园" value="家园"> 家园<br>
+        <input type="checkbox" id="勺园" value="勺园"> 勺园<br>
+        <input type="checkbox" id="农园" value="农园"> 农园<br>
+        <input type="checkbox" id="学一" value="学一"> 学一<br>
+        <input type="checkbox" id="学五" value="学五"> 学五<br>
+        <!-- 添加其他大选项的范围 -->
     </div>
+    <div id="modeSelection">
+        <label>选择抽取的模式:</label><br>
+        <select id="mode">
+            <option value="mode1">模式一: 将所有食堂楼层放在一起抽取</option>
+            <option value="mode2">模式二: 先抽取某一食堂,再在这个食堂中抽取楼层</option>
+        </select>
+    </div>
+    <br>
+    <button onclick="randomize()">抽取</button>
     <div id="result"></div>
     <script src="script.js"></script>
 </body>
